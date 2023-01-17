@@ -6,6 +6,7 @@ public class RotateReflect {
     {
         int[][][] pixels = imTool.imageFileToPixels ("device.jpg");
         imTool.showImage (pixels, "original");
+        System.out.println("pixels.length=" + pixels.length + " pixels[0].length=" + pixels[0].length);
 
         int[][][] rotatedPixels = rotateRight (pixels);
         imTool.showImage (rotatedPixels, "rotated-once");
@@ -13,8 +14,8 @@ public class RotateReflect {
         rotatedPixels = rotateRight (rotatedPixels);
         imTool.showImage (rotatedPixels, "rotated-twice");
 
-        // int[][][] reflectedPixels = reflect (pixels);
-        // imTool.showImage (reflectedPixels, "reflected");
+        int[][][] reflectedPixels = reflect (pixels);
+        imTool.showImage (reflectedPixels, "reflected");
     }
     
     public static int[][][] rotateRight (int[][][] pixels)
@@ -33,7 +34,20 @@ public class RotateReflect {
 
     public static int[][][] reflect (int[][][] pixels)
     {
-	    return null;
+        int[][][] verticalReflection = new int [pixels.length][pixels[0].length][4];
+        for (int pixRow=0; pixRow < pixels.length; pixRow++) {
+            for (int pixCol = 0; pixCol < pixels[0].length; pixCol++) {
+                for (int value = 0; value < 4; value++) {
+                    verticalReflection[pixRow][pixels[0].length-1-pixCol][value] = pixels[pixRow][pixCol][value];
+                }
+            }
+        }
+
+        int[][][] diagonalReflection = rotateRight(verticalReflection);
+        diagonalReflection = rotateRight(diagonalReflection);
+        diagonalReflection = rotateRight(diagonalReflection);
+
+        return diagonalReflection;
     }
 
 }
