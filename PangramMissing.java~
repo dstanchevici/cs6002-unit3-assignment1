@@ -1,0 +1,26 @@
+
+import java.util.*;
+
+public class PangramMissing {
+
+    public static void main (String[] argv)
+    {
+	String[] testSet1 = {"the", "lazy", "dog", "jumps", "on", "the", "fox"};
+	char[] missing = pangramCheck (testSet1);
+	System.out.println (Arrays.toString(missing));
+
+	String[] testSet2 = {"black", "quartz", "sphinx", "takes", "vow"};
+	missing = pangramCheck (testSet2);
+	System.out.println (Arrays.toString(missing));
+
+	String[] testSet3 = {"two", "driven", "jocks", "help", "fax", "my", "big", "quiz"};
+	missing = pangramCheck (testSet3);
+	System.out.println (Arrays.toString(missing));
+    }
+    
+    public static char[] pangramCheck (String[] words)
+    {
+	// INSERT YOUR CODE HERE
+    }
+
+}
