@@ -1,0 +1,54 @@
+
+public class ImageArt {
+
+    static ImageTool imTool = new ImageTool ();
+
+    public static void main (String[] argv)
+    {
+	// Instead of test.jpg, use your own image.
+        int[][][] pixels = imTool.imageFileToPixels ("kitty.jpg");
+        imTool.showImage (pixels, "original");
+
+	int[][][] transPixels = transform1 (pixels);
+        imTool.showImage (transPixels, "after transform-1");
+
+	transPixels = transform2 (transPixels);
+        imTool.showImage (transPixels, "after transform-2");
+    }
+
+    public static int[][][] transform1 (int[][][] pixels)
+    {
+	int[][][] transPixels = new int [pixels.length * 2][pixels[0].length][4];
+	
+	// Copy upper part
+	int transRowInd = 0;
+	for (int i=0; i < pixels.length; i++) {
+	    for (int j=0; j < pixels[0]. length; j++) {
+		transPixels[transRowInd][j][0] = pixels[i][j][0];
+		transPixels[transRowInd][j][1] = pixels[i][j][1];
+		transPixels[transRowInd][j][2] = pixels[i][j][2];
+		transPixels[transRowInd][j][3] = pixels[i][j][3];
+	    }
+	    transRowInd++;
+	}
+
+	// Add horizontal reflection
+	for (int i=pixels.length-1; i >= 0; i--) {
+	    for (int j=0; j < pixels[0]. length; j++) {
+		transPixels[transRowInd][j][0] = pixels[i][j][0];
+		transPixels[transRowInd][j][1] = pixels[i][j][1];
+		transPixels[transRowInd][j][2] = pixels[i][j][2];
+		transPixels[transRowInd][j][3] = pixels[i][j][3];
+	    }
+	    transRowInd++;
+	}
+
+	return transPixels;
+    }
+
+    public static int[][][] transform2 (int[][][] pixels)
+    {
+	return null;
+    }
+
+}
