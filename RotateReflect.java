@@ -6,7 +6,7 @@ public class RotateReflect {
     {
         int[][][] pixels = imTool.imageFileToPixels ("device.jpg");
         imTool.showImage (pixels, "original");
-        System.out.println("pixels.length=" + pixels.length + " pixels[0].length=" + pixels[0].length);
+
 
         int[][][] rotatedPixels = rotateRight (pixels);
         imTool.showImage (rotatedPixels, "rotated-once");
