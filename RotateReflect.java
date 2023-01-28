@@ -7,7 +7,6 @@ public class RotateReflect {
         int[][][] pixels = imTool.imageFileToPixels ("device.jpg");
         imTool.showImage (pixels, "original");
 
-
         int[][][] rotatedPixels = rotateRight (pixels);
         imTool.showImage (rotatedPixels, "rotated-once");
 
@@ -34,6 +33,7 @@ public class RotateReflect {
 
     public static int[][][] reflect (int[][][] pixels)
     {
+	/* One approach is apply vertical Reflection and then rotateRight three times (== one left rotate)
         int[][][] verticalReflection = new int [pixels.length][pixels[0].length][4];
         for (int pixRow=0; pixRow < pixels.length; pixRow++) {
             for (int pixCol = 0; pixCol < pixels[0].length; pixCol++) {
@@ -48,6 +48,19 @@ public class RotateReflect {
         diagonalReflection = rotateRight(diagonalReflection);
 
         return diagonalReflection;
+	*/
+
+	// Another approach is transposing the image
+	int[][][] transposedPixels = new int [pixels[0].length][pixels.length][4];
+        for (int pixRow=0; pixRow < pixels.length; pixRow++) {
+            for (int pixCol = 0; pixCol < pixels[0].length; pixCol++) {
+                for (int value = 0; value < 4; value++) {
+                    transposedPixels[pixCol][pixRow][value] = pixels[pixRow][pixCol][value];
+                }
+            }
+        }
+	return transposedPixels;
+	
     }
 
 }
